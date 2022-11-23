@@ -137,6 +137,3 @@ This demo assumes resources deployed in the `us-west-2` (Oregon) region.
 
    - Finally, configure your parameters! Select the baseline that you'd like to compare against in the `BaselineTime` control, select the `Supplier Name`, `Area of Interest name` and the `Year - Quarter` that you'd like to investigate, and the data will load in automatically as follows:
    ![](images/finalised-dashboard.png)
-
-
-## Cleanup
