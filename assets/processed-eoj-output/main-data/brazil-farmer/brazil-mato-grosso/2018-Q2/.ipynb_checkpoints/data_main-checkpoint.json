@@ -1,0 +1,226 @@
+{
+    "eoj_source_satellite": {
+        "Name": "Sentinel 2 L2A COGs",
+        "Description": "Sentinel-2a and Sentinel-2b imagery, processed to Level 2A (Surface Reflectance) and converted to Cloud-Optimized GeoTIFFs",
+        "DescriptionPageUrl": "https://registry.opendata.aws/sentinel-2-l2a-cogs"
+    },
+    "bucket_name": "sm-geospatial-data-lake",
+    "supplier_name": "brazil-farmer",
+    "supplier_id": "9999999",
+    "AOI_name": "brazil-mato-grosso",
+    "AOI_id": "9999999",
+    "AOI_bbox_geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"0\", \"type\": \"Feature\", \"properties\": {}, \"geometry\": {\"type\": \"Polygon\", \"coordinates\": [[[-61.47502802133589, -10.547903668545445], [-61.47502802133589, -10.749253483741057], [-61.17444254239267, -10.749253483741057], [-61.17444254239267, -10.547903668545445], [-61.47502802133589, -10.547903668545445]]]}}]}",
+    "AOI_centroid_coord": {
+        "lat": -10.648578576143253,
+        "lng": -61.32473528186428
+    },
+    "year": "2018",
+    "month": "04",
+    "quarter": "Q2",
+    "week": "n/a",
+    "eoj_config": {
+        "InputConfig": {
+            "RasterDataCollectionQuery": {
+                "TimeRangeFilter": {
+                    "StartTime": "2018-Q2",
+                    "EndTime": "2018-Q2"
+                },
+                "AreaOfInterest": {
+                    "AreaOfInterestGeometry": {
+                        "PolygonGeometry": {
+                            "Coordinates": [
+                                [
+                                    [
+                                        -61.475028,
+                                        -10.547904
+                                    ],
+                                    [
+                                        -61.475028,
+                                        -10.749253
+                                    ],
+                                    [
+                                        -61.174443,
+                                        -10.749253
+                                    ],
+                                    [
+                                        -61.174443,
+                                        -10.547904
+                                    ],
+                                    [
+                                        -61.475028,
+                                        -10.547904
+                                    ]
+                                ]
+                            ]
+                        }
+                    }
+                },
+                "PropertyFilters": {
+                    "Properties": [
+                        {
+                            "Key": "eo:cloud_cover",
+                            "Value": {
+                                "Range": {
+                                    "LowerBound": 0,
+                                    "UpperBound": 0
+                                }
+                            },
+                            "ComparisonOperator": "Equals"
+                        },
+                        {
+                            "Key": "view:off_nadir",
+                            "Value": {
+                                "Range": {
+                                    "LowerBound": 0,
+                                    "UpperBound": 90
+                                }
+                            },
+                            "ComparisonOperator": "Equals"
+                        }
+                    ],
+                    "LogicalOperator": "And"
+                }
+            }
+        },
+        "EarthObservationJobConfig": {
+            "ModelName": "bandmath",
+            "Parameters": {
+                "PredefinedIndices": [
+                    "NDVI"
+                ],
+                "BandMath": {
+                    "Operations": {
+                        "out1": {
+                            "Equation": "(B08 - B04) / (B08 + B04)"
+                        }
+                    }
+                }
+            }
+        },
+        "OutputConfig": {
+            "S3OutputPath": "s3://sm-geospatial-data-lake/raw-eoj-output/"
+        }
+    },
+    "eoj_id": "kk976fvdft6z",
+    "main_bucket_name": "sm-geospatial-data-lake",
+    "img_bucket_name": "sm-geospatial-img-lake",
+    "year_quarter": "2018-Q2",
+    "baseline_year_quarter": "2017-Q3",
+    "year_month_dt": "2018-04-01T00:00:00",
+    "file_prefix_main": "processed-eoj-output/main-data/brazil-farmer/brazil-mato-grosso/2018-Q2/",
+    "file_prefix_barchart": "processed-eoj-output/barchart-data/brazil-farmer/brazil-mato-grosso/2018-Q2/",
+    "file_prefix_img": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/",
+    "eoj_selected_observation_id": [
+        "../assets/temp/processed-eoj-output/main-data/brazil-farmer/brazil-mato-grosso/2018-Q2/S2B_20LPP_20180523_1_L2A_ndvi.tif"
+    ],
+    "eoj_ndvi_full_tiles_raster_geotiff_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/S2_all-tiles.tif",
+    "eoj_ndvi_full_tiles_raster_png_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/S2_all-tiles.png",
+    "eoj_selected_observation_crs": "EPSG:32720",
+    "eoj_visible_band_raster_geotiff_prefix": "n/a",
+    "eoj_visible_band_raster_png_prefix": "n/a",
+    "eoj_ndvi_raster_geotiff_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/ndvi-transformed-sat-img.tif",
+    "eoj_ndvi_raster_png_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/ndvi-transformed-sat-img.png",
+    "eoj_ndvi_avg": 0.8152656872758539,
+    "eoj_ndvi_full_discrete_distribution_abs_frequency": {
+        "(-1.0, -0.95]": 0,
+        "(-0.95, -0.9]": 0,
+        "(-0.9, -0.85]": 0,
+        "(-0.85, -0.8]": 0,
+        "(-0.8, -0.75]": 0,
+        "(-0.75, -0.7]": 0,
+        "(-0.7, -0.65]": 2,
+        "(-0.65, -0.6]": 43,
+        "(-0.6, -0.55]": 239,
+        "(-0.55, -0.5]": 342,
+        "(-0.5, -0.45]": 531,
+        "(-0.45, -0.4]": 671,
+        "(-0.4, -0.35]": 626,
+        "(-0.35, -0.3]": 606,
+        "(-0.3, -0.25]": 700,
+        "(-0.25, -0.2]": 663,
+        "(-0.2, -0.15]": 696,
+        "(-0.15, -0.1]": 757,
+        "(-0.1, -0.05]": 726,
+        "(-0.05, 0.0]": 732,
+        "(0.0, 0.05]": 673,
+        "(0.05, 0.1]": 720,
+        "(0.1, 0.15]": 1013,
+        "(0.15, 0.2]": 1629,
+        "(0.2, 0.25]": 2764,
+        "(0.25, 0.3]": 4105,
+        "(0.3, 0.35]": 5953,
+        "(0.35, 0.4]": 8788,
+        "(0.4, 0.45]": 13873,
+        "(0.45, 0.5]": 25744,
+        "(0.5, 0.55]": 56226,
+        "(0.55, 0.6]": 126281,
+        "(0.6, 0.65]": 269337,
+        "(0.65, 0.7]": 497949,
+        "(0.7, 0.75]": 678895,
+        "(0.75, 0.8]": 671408,
+        "(0.8, 0.85]": 749048,
+        "(0.85, 0.9]": 2862808,
+        "(0.9, 0.95]": 998604,
+        "(0.95, 1.0]": 169
+    },
+    "eoj_ndvi_full_discrete_distribution_rel_frequency": {
+        "(-1.0, -0.95]": 0.0,
+        "(-0.95, -0.9]": 0.0,
+        "(-0.9, -0.85]": 0.0,
+        "(-0.85, -0.8]": 0.0,
+        "(-0.8, -0.75]": 0.0,
+        "(-0.75, -0.7]": 0.0,
+        "(-0.7, -0.65]": 2.863966871922399e-07,
+        "(-0.65, -0.6]": 6.157528774633158e-06,
+        "(-0.6, -0.55]": 3.422440411947267e-05,
+        "(-0.55, -0.5]": 4.8973833509873026e-05,
+        "(-0.5, -0.45]": 7.60383204495397e-05,
+        "(-0.45, -0.4]": 9.60860885529965e-05,
+        "(-0.4, -0.35]": 8.96421630911711e-05,
+        "(-0.35, -0.3]": 8.67781962192487e-05,
+        "(-0.3, -0.25]": 0.00010023884051728397,
+        "(-0.25, -0.2]": 9.494050180422753e-05,
+        "(-0.2, -0.15]": 9.966604714289949e-05,
+        "(-0.15, -0.1]": 0.00010840114610226281,
+        "(-0.1, -0.05]": 0.00010396199745078309,
+        "(-0.05, 0.0]": 0.00010482118751235981,
+        "(0.0, 0.05]": 9.637248524018873e-05,
+        "(0.05, 0.1]": 0.00010310280738920637,
+        "(0.1, 0.15]": 0.0001450599220628695,
+        "(0.15, 0.2]": 0.0002332701017180794,
+        "(0.2, 0.25]": 0.00039580022169967557,
+        "(0.25, 0.3]": 0.0005878292004620724,
+        "(0.3, 0.35]": 0.0008524597394277021,
+        "(0.35, 0.4]": 0.0012584270435227023,
+        "(0.4, 0.45]": 0.001986590620708972,
+        "(0.45, 0.5]": 0.003686498157538512,
+        "(0.5, 0.55]": 0.008051470067035441,
+        "(0.55, 0.6]": 0.018083230027661625,
+        "(0.6, 0.65]": 0.03856861226914816,
+        "(0.65, 0.7]": 0.07130547199534433,
+        "(0.7, 0.75]": 0.09721663947568786,
+        "(0.75, 0.8]": 0.09614451347718371,
+        "(0.8, 0.85]": 0.10726243287398646,
+        "(0.85, 0.9]": 0.409949363633721,
+        "(0.9, 0.95]": 0.14299843870845977,
+        "(0.95, 1.0]": 2.4200520067744273e-05
+    },
+    "baseline_spec": {
+        "supplier_name": "brazil-farmer",
+        "AOI_name": "brazil-mato-grosso",
+        "year": "2017",
+        "quarter": "Q3"
+    },
+    "baseline_ndvi_avg": 0.7415929087925759,
+    "baseline_visible_band_raster_geotiff_prefix": "n/a",
+    "baseline_visible_band_raster_png_prefix": "n/a",
+    "baseline_ndvi_raster_geotiff_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2017-Q3/ndvi-transformed-sat-img.tif",
+    "baseline_ndvi_raster_png_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2017-Q3/ndvi-transformed-sat-img.png",
+    "eoj_ndvi_avg_normalized": 109.93439629880339,
+    "eoj_ndvi_avg_anomaly": 0.07367277848327802,
+    "eoj_ndvi_avg_anomaly_perc": 0.09934396298803386,
+    "eoj_ndvi_loss_area": 27.0648,
+    "eoj_ndvi_gain_area": 286.2529,
+    "eoj_ndvi_anomaly_raster_geotiff_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/ndvi-anomalies-sat-img.tif",
+    "eoj_ndvi_anomaly_raster_png_prefix": "processed-eoj-output/img-data/brazil-farmer/brazil-mato-grosso/2018-Q2/ndvi-anomalies-sat-img.png"
+}

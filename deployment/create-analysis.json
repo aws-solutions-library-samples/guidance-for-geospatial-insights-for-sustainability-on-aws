@@ -1,0 +1,34 @@
+{
+    "AwsAccountId": "<ACCOUNT ID>",
+    "AnalysisId": "geospatial-analysis-visualisation",
+    "Name": "GeoSpatial Visualisations!",
+    "SourceEntity": {
+        "SourceTemplate": {
+            "Arn": "arn:aws:quicksight:eu-west-2:951737352731:template/Geospatial-Template",
+            "DataSetReferences": [
+                {
+                    "DataSetPlaceholder": "DS1",
+                    "DataSetArn": "arn:aws:quicksight:<REGION>:<ACCOUNT ID>>:dataset/<DATASET ID>"
+                },
+                {
+                    "DataSetPlaceholder": "DS2",
+                    "DataSetArn": "arn:aws:quicksight:<REGION>:<ACCOUNT ID>:dataset/<BARCHART DATASET ID>"
+                }
+            ]
+        }
+    },
+    "Permissions": [
+        {
+            "Principal": "arn:aws:quicksight:us-east-1:<ACCOUNT ID>:user/default/<YOUR QUICKSIGHT USER>",
+            "Actions": [
+                "quicksight:RestoreAnalysis",
+                "quicksight:UpdateAnalysisPermissions",
+                "quicksight:DeleteAnalysis",
+                "quicksight:DescribeAnalysisPermissions",
+                "quicksight:QueryAnalysis",
+                "quicksight:DescribeAnalysis",
+                "quicksight:UpdateAnalysis"
+            ]
+        }
+    ]
+}
