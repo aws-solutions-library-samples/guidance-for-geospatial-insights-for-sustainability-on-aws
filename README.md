@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this solution guidance we demonstrate how you can leverage SageMaker's geospatial capabilities to baseline and monitor the vegetation type and density of the areas where suppliers operate. This is useful because it allows users to track changes in forest density. For example, if a business uses palm oil in their products, they likely want to ensure that the palm oil was sourced responsibly, and that natural forests were not burned down and cleared to make way for a palm oil plantation. The same applies to other key raw materials such as rubber, soy or timber. It is difficult to observe these changes, because suppliers are often geographically far from customers and may often be situated several steps away in the supply chain.
+In this solution, we demonstrate how you can leverage SageMaker's geospatial capabilities to baseline and monitor the vegetation type and density of the areas where suppliers operate. This is useful because it allows users to track changes in forest density. For example, if a business uses palm oil in their products, they likely want to ensure that the palm oil was sourced responsibly, and that natural forests were not burned down and cleared to make way for a palm oil plantation. The same applies to other key raw materials such as rubber, soy or timber. It is difficult to observe these changes, because suppliers are often geographically far from customers and may often be situated several steps away in the supply chain.
 
 Typical land use classification and vegetation data have long refresh cycles which make them unsuitable for monitoring supply chain origins, where customers need to know much sooner if their suppliers have deviated from agreed terms. On the other hand, creating a solution which classifies vegetation requires high manual effort to retrieve the adequate satellite imagery for the area of interest, and to process the raw satellite data (possibly training and applying land use classification algorithms).
 
@@ -12,7 +12,7 @@ As with any other SageMaker-native solutions, SageMaker geospatial capabilities 
 
 ## Case
 
-To demonstrate how this solution guidance works end-to-end, we will use a randomly selected AOI from Brazil. However, this solution guidance readily generalizes to any other desired AOI.
+To demonstrate how this solution works end-to-end, we will use a randomly selected AOI from Brazil. However, this solution readily generalizes to any other desired AOI.
 
 Illegal land clearing, primarily for cattle production, oilseed growing (soybean and palm oil) and timber harvesting, is a major concern in [Brazil](https://en.wikipedia.org/wiki/Deforestation_in_Brazil). Local rainforests are at a sever risk of complete destruction. Similar issues exist in other tropical domains such as [Indonesia](https://en.wikipedia.org/wiki/Deforestation_in_Indonesia), [DR Congo](https://en.wikipedia.org/wiki/Deforestation_in_the_Democratic_Republic_of_the_Congo) or [Malyasia](https://en.wikipedia.org/wiki/Deforestation_in_Malaysia) just to name a few. With many global supply chains relying heavily on products such as palm oil or soybean that are often produced in far-away geographies, remote monitoring of origins and producers becomes crucial from a social responsibility standpoint.
 
