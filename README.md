@@ -8,7 +8,7 @@ Typical land use classification and vegetation data have long refresh cycles whi
 
 SageMaker's geospatial capabilities remove this effort, by providing the data sets and the necessary algorithms to make land use classification and vegetation mapping easier and faster. Drawing on high-resolution satellite imagery from the [Landsat](https://registry.opendata.aws/usgs-landsat/) and [Sentinel 2](https://registry.opendata.aws/sentinel-2-l2a-cogs/) constellations, SageMaker geospatial functionalities provide a straight-forward querying tool for retrieving satellite imagery for a desired area of interest (AOI), period and for given conditions (e.g., limit on cloud cover) and offers a wealth of built-in image processing capabilities.
 
-As with any other SageMaker-native solutions, SageMaker geospatial capabilities readily integrate with existing AWS tooling. As part of this guidance, we provide an Amazon QuickSight template, which enables you to visualize and query .
+As with any other SageMaker-native solutions, SageMaker geospatial capabilities readily integrate with existing AWS tooling. As part of this Guidance, we provide an Amazon QuickSight template, which enables you to visualize and query.
 
 ## Case
 
