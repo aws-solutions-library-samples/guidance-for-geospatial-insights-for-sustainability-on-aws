@@ -79,11 +79,11 @@ This demo assumes resources deployed in the `us-west-2` (Oregon) region.
 
 ![](images/cfn-screenshot.png)
 
-1. __Set up SageMaker's Geospatial Capabilities__
+2. __Set up SageMaker's Geospatial Capabilities__
 
 A detailed step-by-step guide is provided in the [Getting Started Guide](https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial-getting-started.html). In summary, the following prerequisites need to be satisfied to use SageMaker geospatial capabilities.
 * Create a [SageMaker Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/onboard-quick-start.html) in region `us-west-2` (Oregon) (skip if you already have a Domain in `us-west-2`)
-* In your AWS Console, __navigate to the previously created SageMaker Domain in `us-west-2`.
+* In your AWS Console, navigate to the previously created SageMaker Domain in `us-west-2`.
 * [Clone](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html) this repository to the root folder of the SageMaker Studio User.
 * Launch `SageMaker-geospatial-notebook.ipynb` located in the `/deployment/` folder.
 * Select `Geospatial 1.0` as the Image for your Notebook environment.
@@ -94,28 +94,28 @@ A detailed step-by-step guide is provided in the [Getting Started Guide](https:/
       > ⚠️ **Warning!** To ensure all output data will be saved to the designated S3 output buckets created in the previous infrastructure deployment step, make sure to set the respective bucket name variables accordingly, i.e., `main_bucket_name = geospatialstack-etlbucket<...>` and `img_bucket_name = geospatialstack-imagebucket<...>` (see also the respective instuctions in the notebook).
       > For illustrative purposes and easier readability, the notebook is currently set up to generate data for a baseline period (2017-Q3) and a single in-scope period (2022-Q3). However, you can easily extend the notebook to generate a full history of EOJs by looping over the full set of periods that lie between the baseline period and the in-scope period. We provide further instructions on how to implement such a simple loop in the notebook. Alternatively you can choose to use the pre-generated sample data in the `/assets/processed-eoj-output/` folder which contains results for quarterly EOJs from 2017 through 2022 for the sample AOI in Brazil.
 
-2. __Configure Quicksight Dashboard__
+3. __Configure Quicksight Dashboard__
 
-    - Now that you have your data in the relevant S3 buckets, lets visualise it!
+* Now that you have your data in the relevant S3 buckets, lets visualise it!
 
       > ⚠️ **Warning!** Make sure that you have Amazon Quicksight Enterprise Edition enabled in your account to follow the next steps.
 
-    - Please ensure that Amazon Quicksight has permissions to access the S3 ETL Bucket, with Athena also allowed. This can be done in the console, in the Quicksight service settings. This is under Security & permissions settings, under "Manage Quicksight".
-    - Once it is done, lets import our datasets into Quicksight. Click on "Datasets" on the left hand side of the page, and select "New dataset"
-    - Select "Athena", type in a DataSource name, and then continue with "Create data source"
+* Please ensure that Amazon Quicksight has permissions to access the S3 ETL Bucket, with Athena also allowed. This can be done in the console, in the Quicksight service settings. This is under Security & permissions settings, under "Manage Quicksight".
+* Once it is done, lets import our datasets into Quicksight. Click on "Datasets" on the left hand side of the page, and select "New dataset"
+* Select "Athena", type in a DataSource name, and then continue with "Create data source"
     ![](images/athena-quicksight-import.png)
 
-    - We'll want to import both of these tables, first, lets import the `geospatialtable`. We dont need to import this data to SPICE, so select the option to "Directly query your data"
+*  We'll want to import both of these tables, first, lets import the `geospatialtable`. We dont need to import this data to SPICE, so select the option to "Directly query your data"
     ![](images/quicksight-select-tables.png)
 
-    - An analysis will appear- but we're not done yet! Click on the quicksight logo in the top left hand side of the page, and reimport the other dataset as well.
-    - Your dataset tab in Amazon Quicksight should now look like the below:
+* An analysis will appear- but we're not done yet! Click on the quicksight logo in the top left hand side of the page, and reimport the other dataset as well.
+* Your dataset tab in Amazon Quicksight should now look like the below:
     ![](images/quicksight-datasets-tab.png)
 
-    - We now want to stand up our new analysis from a pre-made template. In the deployment directory of this repo, open up the `create-analysis.json` file- we'll need to update it.
-    - In your CLI, we want to get the ID's of those two datasets we've just created. You can get these by running `aws quicksight list-data-sets --aws-account-id <YOUR ACCOUNT ID>`
-    - Copy and paste the data set ID's into the create-analysis.json file into the specific gaps left for them highlighted with `<DATASET ID>` and `<BARCHART DATASET ID>`. Also fill in the gaps highlighted for `<ACCOUNT ID>`. You can find your `<YOUR QUICKSIGHT USER>` at the top right hand corner of the Quicksight dashboard homepage. Its important to note that whatever region you deployed in, the quicksight user ARN will always be in `us-east-1`.
-    - In the `/deployment` directory, run the following:
+* We now want to stand up our new analysis from a pre-made template. In the deployment directory of this repo, open up the `create-analysis.json` file- we'll need to update it.
+* In your CLI, we want to get the ID's of those two datasets we've just created. You can get these by running `aws quicksight list-data-sets --aws-account-id <YOUR ACCOUNT ID>`
+* Copy and paste the data set ID's into the create-analysis.json file into the specific gaps left for them highlighted with `<DATASET ID>` and `<BARCHART DATASET ID>`. Also fill in the gaps highlighted for `<ACCOUNT ID>`. You can find your `<YOUR QUICKSIGHT USER>` at the top right hand corner of the Quicksight dashboard homepage. Its important to note that whatever region you deployed in, the quicksight user ARN will always be in `us-east-1`.
+* In the `/deployment` directory, run the following:
 
       ```
       aws quicksight create-analysis --aws-account-id <ACCOUNT ID> --cli-input-json file://create-analysis.json
@@ -123,11 +123,11 @@ A detailed step-by-step guide is provided in the [Getting Started Guide](https:/
 
    ![](images/create-analysis-screenshot.png)
 
-   - You should now see the new analysis in your Quicksight Console Dashboard. Click on it, and you'll see the following:
+* You should now see the new analysis in your Quicksight Console Dashboard. Click on it, and you'll see the following:
    ![](images/dashboard-incomplete.png)
 
-   - Almost there! Using the cloudfront URL which was the output of the cdk stack we deployed, update the CloudfrontURL Control at the top of the analysis, prefixing `https://` as follows:
+* Almost there! Using the cloudfront URL which was the output of the cdk stack we deployed, update the CloudfrontURL Control at the top of the analysis, prefixing `https://` as follows:
    ![](images/dashboard-cloudfront-input.png)
 
-   - Finally, configure your parameters! Select the baseline that you'd like to compare against in the `BaselineTime` control, select the `Supplier Name`, `Area of Interest name` and the `Year - Quarter` that you'd like to investigate, and the data will load in automatically as follows:
+* Finally, configure your parameters! Select the baseline that you'd like to compare against in the `BaselineTime` control, select the `Supplier Name`, `Area of Interest name` and the `Year - Quarter` that you'd like to investigate, and the data will load in automatically as follows:
    ![](images/finalised-dashboard.png)
