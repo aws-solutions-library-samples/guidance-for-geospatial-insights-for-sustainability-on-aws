@@ -80,25 +80,19 @@ This demo assumes resources deployed in the `us-west-2` (Oregon) region.
 ![](images/cfn-screenshot.png)
 
 1. __Set up SageMaker's Geospatial Capabilities__
-    - Create a [SageMaker Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/onboard-quick-start.html) in region `us-west-2` (Oregon) (skip if you already have a Domain in `us-west-2`)
-    - Ask your Amazon point-of-contact to file an Amazon Trouble Ticket (Category: *AWS*, Type: *Axis*, Item: *General*) to get allowlisted for pulling the latest `geo-kernel-image` for SageMaker from the ECR repository (axis) hosted on the image repo account (936705254080). On the Trouble Ticket, make sure to specify the account number that is to be allowlisted.
-    - Once allowlisted, create and attach the new `geo-kernel-image` by following the below steps:
 
-      - In your AWS Console, navigate to the previously created SageMaker Domain in `us-west-2`
-      - Select `Attach Image` in SageMaker Control Panel and click `Create New Image`. Enter the following image URI: `936705254080.dkr.ecr.us-west-2.amazonaws.com/axis:geo-kernel-image`. Select `Next`.
-      ![](images/sagemaker_image_uri.png)
-      - Set `Image name` and `Image display name` to `geo-kernel-image`. Set EFS mount path to `/root/data`.
-      ![](images/sagemaker_image_properties.png)
-      - Under Advanced configuration, set both `UID` and `GUID` to 0.
-      - Select SageMaker Studio image as `image type`. Set `Kernel name` and `Kernel display name` to python3.
-      ![](images/sagemaker_image_kernel.png)
-    - [Clone](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html) this repository to the root folder of the SageMaker Studio User
-    - Launch `SageMaker-geospatial-notebook.ipynb` located in the `/deployment/` folder. Change the image to `geo-kernel-image`.
-    - Follow the instructions provided in the notebook to perform Earth Observation Jobs (EOJ) for an area of observation (AOI) of choice.
+A detailed step-by-step guide is provided in the [Getting Started Guide](https://docs.aws.amazon.com/sagemaker/latest/dg/geospatial-getting-started.html). In summary, the following prerequisites need to be satisfied to use SageMaker geospatial capabilities.
+    - __Create a [SageMaker Domain](https://docs.aws.amazon.com/sagemaker/latest/dg/onboard-quick-start.html) in region `us-west-2` (Oregon)__ (skip if you already have a Domain in `us-west-2`)
+    - In your AWS Console, __navigate to the previously created SageMaker Domain in `us-west-2`__.
+    - __[Clone](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html) this repository__ to the root folder of the SageMaker Studio User.
+    - __Launch `SageMaker-geospatial-notebook.ipynb`__ located in the `/deployment/` folder.
+    - __Select `Geospatial 1.0`__ as the Image for your Notebook environment.
+    - __Select a sufficiently-sized instance type__. Operations on satellite raster imagery can be very memory-intensive. The recommended default instance to go with the `Geospatial 1.0` image is an `ml.m5.4xlarge`. Do not select a different instance type. Make sure to use [Lifecycle policies](https://aws.amazon.com/blogs/machine-learning/customize-amazon-sagemaker-studio-using-lifecycle-configurations/) to shut down the instance when not in use to avoid uncecessary cost.
+    - __Set Appropriate Permissions and Trust Policies__ on the SageMaker Execution Role used for your analysis. A detailed description of the [required in-line policy changes required is provided in the Developer Guidelines](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-geospatial-roles.html). Set the permissions on the Execution Role accordingly using AWS Identity and Access Management.
+    - Follow the instructions provided in the Notebook (`SageMaker-geospatial-notebook.ipynb`) to perform Earth Observation Jobs (EOJ) for an area of observation (AOI) of choice.
 
       > ⚠️ **Warning!** To ensure all output data will be saved to the designated S3 output buckets created in the previous infrastructure deployment step, make sure to set the respective bucket name variables accordingly, i.e., `main_bucket_name = geospatialstack-etlbucket<...>` and `img_bucket_name = geospatialstack-imagebucket<...>` (see also the respective instuctions in the notebook).
-
-    - For illustrative purposes and easier readability, the notebook is currently set up to generate data for a baseline period (2017-Q3) and a single in-scope period (2022-Q3). However, you can easily extend the notebook to generate a full history of EOJs by looping over the full set of periods that lie between the baseline period and the in-scope period. We provide further instructions on how to implement such a simple loop in the notebook. Alternatively you can choose to use the pre-generated sample data in the `/assets/processed-eoj-output/` folder which contains results for quarterly EOJs from 2017 through 2022 for the sample AOI in Brazil.
+      > For illustrative purposes and easier readability, the notebook is currently set up to generate data for a baseline period (2017-Q3) and a single in-scope period (2022-Q3). However, you can easily extend the notebook to generate a full history of EOJs by looping over the full set of periods that lie between the baseline period and the in-scope period. We provide further instructions on how to implement such a simple loop in the notebook. Alternatively you can choose to use the pre-generated sample data in the `/assets/processed-eoj-output/` folder which contains results for quarterly EOJs from 2017 through 2022 for the sample AOI in Brazil.
 
 2. __Configure Quicksight Dashboard__
 
