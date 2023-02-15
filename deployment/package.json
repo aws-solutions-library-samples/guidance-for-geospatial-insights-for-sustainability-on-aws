@@ -18,7 +18,8 @@
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1",
-    "typescript": "~3.9.7"
+    "typescript": "~3.9.7",
+    "cdk-nag": "^2.22.7"
   },
   "dependencies": {
     "aws-cdk-lib": "2.47.0",
