@@ -73,7 +73,11 @@ This demo assumes resources deployed in the `us-west-2` (Oregon) region.
 1. __Deploy Base Infrastructure using CDK__
     - Clone this repository to your local machine
     - In your Terminal, navigate to the repository folder on your machine (run `cd <path to repository> `)
-    - With [CLI credentials for your AWS account](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), run  `cd deployment && cdk deploy`
+    - Install the required libraries inside the deployment folder by running `cd deployment && npm install`
+    - With [CLI credentials for your AWS account](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), run  `cdk deploy` to deploy the required based infrastructure inside your account.
+
+      > ⚠️ **Warning!** If you run into an error like `Building Assets Failed: Error: GeospatialETLStack: SSM parameter xyz not found.` your account has not been bootstrapped for cdk. Please run `cdk bootstrap` to rectify this. 
+      
     - Wait until the `GeospatialETLStack` been marked as `CREATE COMPLETE` in the [Cloudformation Console](https://us-west-2.console.aws.amazon.com/cloudformation/)
     - Take note of the 3 Output Values for the Cloudfront distribution & the two S3 bucket names
 
