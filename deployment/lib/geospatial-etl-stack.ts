@@ -17,7 +17,7 @@ export class GeospatialETLStack extends cdk.Stack {
     const loggingBucket = new s3.Bucket(this, "loggingBucket", {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       enforceSSL: true,
-      encryption: s3.BucketEncryption.KMS_MANAGED,
+      encryption: s3.BucketEncryption.S3_MANAGED,
       lifecycleRules: [
         {
           transitions: [
@@ -33,7 +33,7 @@ export class GeospatialETLStack extends cdk.Stack {
     const etlBucket = new s3.Bucket(this, "etlBucket", {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       enforceSSL: true,
-      encryption: s3.BucketEncryption.KMS_MANAGED,
+      encryption: s3.BucketEncryption.S3_MANAGED,
       lifecycleRules: [
         {
           transitions: [
@@ -50,7 +50,7 @@ export class GeospatialETLStack extends cdk.Stack {
     const imageBucket = new s3.Bucket(this, "imageBucket", {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       enforceSSL: true,
-      encryption: s3.BucketEncryption.KMS_MANAGED,
+      encryption: s3.BucketEncryption.S3_MANAGED,
       lifecycleRules: [
         {
           transitions: [
